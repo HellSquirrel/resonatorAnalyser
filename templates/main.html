@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <link rel = "stylesheet" href = "/static/css/bootstrap.min.css"/>
+    <link rel = "stylesheet" href = "/static/css/main.css"/>
+    <script data-main = "/static/scripts/loader.js" src = "/static/scripts/libs/require.js"></script>
+    <title>Расчет свойств лазерного резонатора</title>
+    <title></title>
+</head>
+<body>
+
+    <div class = "data-bound-container" data-bound-objects = "widgets/alerts/error" data-template = "error-alert-template">
+
+    </div>
+
+    <div class = "page-header text-center">
+        <h2>Расчет параметров лазерного резонатора</h2>
+    </div>
+    <div class = "container">
+
+        <div class = "parameters">
+            <h4 class="text-center">Геометрические параметры резонатора:</h4>
+
+            <div class = "input-group mirror-number-form">
+                <span class = "input-group-addon">Количество зеркал</span>
+                <input type = "number" min = "2" value="2"
+                       class = "form-control data-bound-container" data-bound-objects = "widgets/parameters/mirror"
+                       id = "mirrors-number" name = "number">
+            </div>
+
+            <div class="data-bound-container" data-bound-objects="widgets/parameters/parameterTable"
+                 data-template = "parameters-template">
+
+            </div>
+
+
+            <div class="container">
+                <h4 class="text-center">Координаты расчетных точeк <a class="help" data-toggle="collapse"
+                                                                      href="#clarification">[?]</a></h4>
+
+                <div class="input-group mirror-number-form">
+
+                </div>
+
+                <div id="clarification" class="panel-collapse collapse">
+                    <div class="panel-body help">
+                        Для расчета необходимо указать координату точки наблюдения. Координата точки наблюдения
+                        совпадает с
+                        координатой z текущей системы координат. Выбор текущей системы координат зависит от зеркала.
+                        Если не понятно,
+                        см. рисунок ниже:)
+
+                        <div>
+                            <img src="/media/пояснение.PNG">
+                        </div>
+
+                    </div>
+                </div>
+
+                <div class="data-bound-container" data-bound-objects="widgets/parameters/parameterTable"
+                     data-template="points-table-template">
+
+                </div>
+
+            </div>
+
+        </div>
+
+        <ul class="nav nav-pills">
+            {#            <li class = "active"><a href = "#parameters" data-toggle = "tab">Параметры резонатора</a></li>#}
+            <li class="active"><a href="#matrix" data-toggle="tab" class="data-bound-container"
+                                  data-bound-objects="widgets/results/switcher"
+                                  data-event="events.matrix.tab.activated">Матрицы резонатора</a></li>
+
+            <li><a href="#misalignments" data-toggle="tab" class="data-bound-container"
+                    data-bound-objects="widgets/results/switcher"
+                    data-event="events.misalignments.tab.activated">Разъюстировки</a></li>
+            <li><a href="#field-distribution" data-toggle="tab">Распределение поля</a></li>
+            <li><a href="#loss" data-toggle="tab">Анализ потерь</a></li>
+        </ul>
+
+        <!-- Tab panes -->
+        <div class="tab-content">
+
+            <div class="tab-pane" id="matrix">
+                <div>
+                    <h4>
+                        Лучевые матрицы резонатора в выбранных точках
+                    </h4>
+
+                    <div class="data-bound-container" data-bound-objects="widgets/results/rayMatrix"
+                         data-template='nice-matrix-template'>
+                        Для отображения матрицы резонатора заполните раздел параметры резонатора
+                    </div>
+                </div>
+            </div>
+
+            <div class="tab-pane" id="misalignments">
+                <h4>
+                    Четырехмерные векторы разъюстировок для каждого зеркала
+                </h4>
+
+                <div class="data-bound-container" data-bound-objects="widgets/results/misalignments">
+                    Ддя отображения разъюстировок задайте параметры для каждого зеркала
+                </div>
+            </div>
+            <div class="tab-pane" id="field-distribution">...</div>
+            <div class="tab-pane" id="loss">...</div>
+        </div>
+
+
+</div>
+
+
+   {% include 'templates.html' %}
+</body>
+</html>

@@ -1,0 +1,116 @@
+{% load script_template %}
+
+{% start_template 'parameters-template' %}
+<table class="table">
+        <thead>
+            <tr>
+                <th>#</th>
+                <th>Путь, м</th>
+                <th>Радиус кривизны, м</th>
+                <th>Угол поворотa, рад</th>
+                <th>&Delta;&xi;</th>
+                <th>&Delta;&eta;</th>
+                <th>&Delta;&zeta;</th>
+                <th>&delta;&xi;</th>
+                <th>&delta;&eta;</th>
+            </tr>
+        </thead>
+
+    <tbody>
+        <% for (var i=1; i <= number; i++) { %>
+            <tr>
+                <td>
+                    <%= i %>
+                </td>
+
+                <td>
+                    <input type = "text" name="path" class="mirror-parameter mis-parameter" pattern = "[+-]?\d+([.]\d+)?"  value="0.05"/>
+                </td>
+
+                <td>
+                    <input type = "text" name="radius" class="mirror-parameter mis-parameter" pattern = "([+-]?\d+([.]\d+)?)|\u221E" value="&#8734" />
+                </td>
+
+                <td>
+                    <input type = "text" name="angle" class="mirror-parameter mis-parameter" pattern = "[+-]?\d+([.]\d+)?" value="0.392699"/>
+                </td>
+
+                <td>
+                     <input type = "text" name="mis-offset-ksi" class="mis-parameter" pattern = "[+-]?\d+([.]\d+)?" value="0"/>
+                </td>
+
+                <td>
+                    <input type = "text" name = "mis-offset-eta" class = "mis-parameter" pattern = "[+-]?\d+([.]\d+)?" value = "0"/>
+                </td>
+
+                <td>
+                    <input type = "text" name = "mis-offset-dzeta" class = "mis-parameter" pattern = "[+-]?\d+([.]\d+)?" value = "0"/>
+                </td>
+
+                <td>
+                     <input type = "text" name="rot-offset-ksi" class="mis-parameter" pattern = "[+-]?\d+([.]\d+)?" value="0"/>
+                </td>
+
+                <td>
+                    <input type = "text" name = "rot-offset-eta" class = "mis-parameter" pattern = "[+-]?\d+([.]\d+)?" value = "0"/>
+                </td>
+           </tr>
+
+        <% }; %>
+    </tbody>
+
+</table>
+
+{% end_template %}
+
+
+
+{% start_template 'error-alert-template' %}
+
+<div class = "alert alert-danger alert-dismissable">
+  <button type = "button" class = "close" data-dismiss = "alert" aria-hidden = "true">&times;</button>
+  <strong><%= error %></strong> <%= details %>
+</div>
+{% end_template %}
+
+
+
+{% start_template 'nice-matrix-template' %}
+<% for(var n=0; n <= matrix.length-1; n++){ %>
+
+<div>
+    <table class="matrix">
+
+        <% for(var i=0; i < 4; i++){ %>
+                <tr>
+                    <% for(var j=0; j < 4; j++){ %>
+                    <td>
+                        <%= matrix[n][i][j] %>
+                    </td>
+                    <% }; %>
+                </tr>
+        <% }; %>
+
+    </table>
+</div>
+
+<% }; %>
+
+{% end_template %}
+
+
+
+{% start_template 'points-table-template' %}
+    <% for(var i=0; i < number; i++){ %>
+        <div>
+                <input type="checkbox" name="point-<%= i %>" id=""/> Перед зеркалом <%=i+1%>
+        </div>
+    <% }; %>
+{% end_template %}
+
+
+
+{% start_template 'results-template' %}
+
+
+{% end_template %}
