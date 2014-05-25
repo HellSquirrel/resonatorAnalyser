@@ -1,8 +1,6 @@
 define(function (require, exports) {
 
-    var factory = require('widgets/factories/resultWidget'),
-        settings = require('settings');
+    var factory = require('widgets/factories/resultWidget')
 
-    exports.create = factory.createWidget('events.misalignments.tab.activated', 'misalignments', settings.urls.MISALIGNMENTS_URL,
-        settings.selectors.MISALIGNMENTS_PARAMS);
+    exports.create = factory.createWidget('commands.misalignments.draw', 'misalignments');
 });

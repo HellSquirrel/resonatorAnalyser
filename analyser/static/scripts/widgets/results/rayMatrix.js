@@ -1,8 +1,6 @@
 define(function (require, exports) {
 
-    var factory = require('widgets/factories/resultWidget'),
-        settings = require('settings');
+    var factory = require('widgets/factories/resultWidget');
 
-    exports.create = factory.createWidget('events.matrix.tab.activated', 'matrix', settings.urls.MATRIX_URL,
-        settings.selectors.MIRROR_PARAMS);
+    exports.create = factory.createWidget('commands.rayMatrix.draw', 'matrix');
 });

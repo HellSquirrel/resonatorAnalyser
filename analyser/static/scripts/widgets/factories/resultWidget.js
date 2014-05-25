@@ -3,26 +3,22 @@ define(function (require, exports) {
         sender = require('actions/sender'),
         generator = require('libs/templateOperator');
 
-    function loadContent(container, template, dataName, url, selector) {
 
-        function draw (data) {
+    function draw (data, container, template, dataName) {
 
-            var parameters = {};
-            parameters[dataName] = data;
+        var parameters = {};
+        parameters[dataName] = data;
 
-            generator.generate(template, parameters, container);
-        }
-
-        sender.getData(url, selector, draw)
-
+        generator.generate(template, parameters, container);
     }
 
 
-    function createWidget(eventName, dataName, url, selector) {
+    function createWidget(eventName, dataName) {
+
         return function(container, template) {
 
-            observer.subscribe(eventName, function() {
-                loadContent(container, template, dataName, url, selector);
+            observer.subscribe(eventName, function(data) {
+                draw(data, container, template, dataName);
             });
 
         }
